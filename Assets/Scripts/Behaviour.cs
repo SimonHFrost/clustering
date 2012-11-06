@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
+// I AM CHANGING A SCRIPT
+
 public class Behaviour : MonoBehaviour {
 	
 	private bool uncomfortable;
