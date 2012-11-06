@@ -1,8 +1,6 @@
 using UnityEngine;
 using System.Collections;
 
-// I AM CHANGING A SCRIPT
-
 public class Behaviour : MonoBehaviour {
 	
 	private bool uncomfortable;
@@ -15,6 +13,7 @@ public class Behaviour : MonoBehaviour {
 			return;	
 		}
 		
+		/*
 		var x = 0;
 		var z = 0;
 		
@@ -30,9 +29,13 @@ public class Behaviour : MonoBehaviour {
 			} else {
 				z = -1;	
 			}
-		}
+		}*/
 		
-		Vector3 direction = new Vector3(x, 0, z);
+		Vector2 newPosition = Random.insideUnitCircle;
+		
+		// Vector3 direction = new Vector3(x, 0, z);
+		Vector3 direction = new Vector3(newPosition.x, 0, newPosition.y);
+		
 		this.transform.Translate(direction);
 		
 		uncomfortable = false;
