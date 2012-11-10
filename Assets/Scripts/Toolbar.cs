@@ -17,12 +17,17 @@ public class Toolbar : MonoBehaviour {
 		var width = 100.0f;
 		var height = 30.0f;
 		
-		Rect rect = new Rect((float)(Screen.width * 0.5 - width / 2.0), (float)(Screen.height * 0.1 - height / 2.0), width, height);
+		Rect startRect = new Rect((float)(Screen.width * 0.5 - width / 2.0), (float)(Screen.height * 0.1 - height / 2.0), width, height);
+		Rect resetRect = new Rect((float)(Screen.width * 0.5 - width / 2.0), (float)(Screen.height * 0.2 - height / 2.0), width, height);
 		
 		string buttonName = GameObject.Find("ClusterController").GetComponent<ClusterController>().Move ? "STOP" : "START";
 		
-		if(GUI.Button(rect, buttonName)) {
+		if(GUI.Button(startRect, buttonName)) {
 			GameObject.Find("ClusterController").GetComponent<ClusterController>().ToggleMovement();
+		}
+		
+		if(GUI.Button(resetRect, "RESET")) {
+			GameObject.Find("ClusterController").GetComponent<ClusterController>().Reset();	
 		}
 	}
 }
