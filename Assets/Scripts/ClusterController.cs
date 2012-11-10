@@ -15,7 +15,7 @@ public class ClusterController : MonoBehaviour {
 	void Update() {
 		if(Move) {
 			timer += Time.deltaTime;
-			if(timer > 0.01) {
+			if(timer > 0.1) {
 				AdjustCluster();
 				timer = 0;
 			}
