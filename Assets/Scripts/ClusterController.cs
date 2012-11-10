@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ClusterController : MonoBehaviour {
 	
-	public bool Move = true;
+	public bool Move = false;
 	private GameObject[] _toons;
 	public enum mood { Unsettled, Fine }
 	private float timer;
@@ -15,7 +15,7 @@ public class ClusterController : MonoBehaviour {
 	void Update() {
 		if(Move) {
 			timer += Time.deltaTime;
-			if(timer >= 0.5) {
+			if(timer > 0.01) {
 				AdjustCluster();
 				timer = 0;
 			}
@@ -27,7 +27,6 @@ public class ClusterController : MonoBehaviour {
 	}
 	
 	public void AdjustCluster() {
-
 		foreach(GameObject toon in _toons) {
 			toon.GetComponent<Behaviour>().Shuffle();	
 		}

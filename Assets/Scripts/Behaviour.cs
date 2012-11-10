@@ -13,35 +13,15 @@ public class Behaviour : MonoBehaviour {
 			return;	
 		}
 		
-		/*
-		var x = 0;
-		var z = 0;
+		Vector2 direction = DetermineDirection();
+		Vector3 newPosition = new Vector3(direction.x, 0, direction.y);
 		
-		if(Random.value > 0.5) {
-			if(Random.value > 0.5) {
-				x = 1;	
-			} else {
-				x = -1;	
-			}
-		} else {
-			if(Random.value > 0.5) {
-				z = 1;	
-			} else {
-				z = -1;	
-			}
-		}*/
-		
-		Vector2 newPosition = Random.insideUnitCircle;
-		
-		// Vector3 direction = new Vector3(x, 0, z);
-		Vector3 direction = new Vector3(newPosition.x, 0, newPosition.y);
-		
-		this.transform.Translate(direction);
+		this.transform.Translate(newPosition);
 		
 		uncomfortable = false;
 	}
 	
-	bool CheckComfortableness () {
+	private bool CheckComfortableness () {
 		if(!uncomfortable) {
 			GameObject[] others = GameObject.FindGameObjectsWithTag("Toon");
 			foreach(GameObject other in others) {
@@ -58,5 +38,32 @@ public class Behaviour : MonoBehaviour {
 		MeshRenderer status = transform.Find("Status").GetComponent<MeshRenderer>();
 		status.enabled = uncomfortable;
 	}
-			
+	
+	private Vector2 DetermineDirection() {
+		float xsum = 0;
+		float zsum = 0;
+		
+		GameObject[] toons = GameObject.FindGameObjectsWithTag("Toon");
+		foreach(GameObject toon in toons) {
+			xsum += toon.transform.position.x;
+			zsum += toon.transform.position.z;
+		}
+		
+		float averageX = (float)xsum / (float)toons.Length;
+		float averageZ = (float)zsum / (float)toons.Length;
+		
+		Vector2 currentPos = new Vector2(transform.position.x, transform.position.z);
+		Vector2 averagePos = new Vector2(averageX, averageZ);
+		
+		Vector2 newPos = currentPos - averagePos;
+		newPos.Normalize();
+		Vector2 touchOfRandom = Random.insideUnitCircle;
+		touchOfRandom.Scale(new Vector2(5f, 5f));
+		newPos = newPos + touchOfRandom;
+		
+		Debug.Log(newPos);
+		
+		newPos.Scale(new Vector2(0.1f, 0.1f));
+		return newPos;
+	}
 }
