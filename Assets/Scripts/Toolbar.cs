@@ -41,9 +41,8 @@ public class Toolbar : MonoBehaviour {
 		
 		ClusterController clusterController = GameObject.Find("ClusterController").GetComponent<ClusterController>();
 		
-		int happyNumberOfToons = clusterController.GetHappyNumberOfToons();
 		int totalNumberOfToons = clusterController.GetTotalNumberOfToons();
 		
-		GUI.Label(statusRect, happyNumberOfToons + "/" + totalNumberOfToons);
+		GUI.Label(statusRect, totalNumberOfToons + " TOONS");
 	}
 }

@@ -46,14 +46,4 @@ public class ClusterController : MonoBehaviour {
 	public int GetTotalNumberOfToons() {
 		return _toons.Length;
 	}
-	
-	public int GetHappyNumberOfToons() {
-		int sum = 0;
-		foreach(GameObject toon in _toons) {
-			if(!toon.GetComponent<Behaviour>().uncomfortable) {
-				sum += 1;
-			}
-		}
-		return sum;
-	}
 }
