@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Linq;
 
-public class ClusterController : MonoBehaviour {
+public class SequenceController : MonoBehaviour {
 	
 	public bool Move = false;
 	private GameObject[] _toons;
@@ -27,6 +27,7 @@ public class ClusterController : MonoBehaviour {
 	}
 	
 	public void AdjustCluster() {
+		FindToons();
 		foreach(GameObject toon in _toons) {
 			toon.GetComponent<Behaviour>().Shuffle();	
 		}

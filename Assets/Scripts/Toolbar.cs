@@ -10,6 +10,7 @@ public class Toolbar : MonoBehaviour {
 		MakeStartButton();
 		MakeResetButton();
 		MakeStatusLabel();
+		MakeAddButton();
 	}
 	
 	void MakeStartButton() {
@@ -17,10 +18,10 @@ public class Toolbar : MonoBehaviour {
 		float y = (float)(Screen.height * 0.1 - height / 2.0);
 		Rect startRect = new Rect(x, y, width, height);
 		
-		string buttonName = GameObject.Find("ClusterController").GetComponent<ClusterController>().Move ? "STOP" : "START";
+		string buttonName = GameObject.Find("MainController").GetComponent<SequenceController>().Move ? "STOP" : "START";
 		
 		if(GUI.Button(startRect, buttonName)) {
-			GameObject.Find("ClusterController").GetComponent<ClusterController>().ToggleMovement();
+			GameObject.Find("MainController").GetComponent<SequenceController>().ToggleMovement();
 		}
 	}
 	
@@ -30,7 +31,7 @@ public class Toolbar : MonoBehaviour {
 		Rect resetRect = new Rect(x, y, width, height);
 		
 		if(GUI.Button(resetRect, "RESET")) {
-			GameObject.Find("ClusterController").GetComponent<ClusterController>().Reset();	
+			GameObject.Find("MainController").GetComponent<SequenceController>().Reset();	
 		}
 	}
 	
@@ -39,10 +40,22 @@ public class Toolbar : MonoBehaviour {
 		float y = (float)(Screen.height * 0.2 - height / 2.0);
 		Rect statusRect = new Rect(x, y, width, height);
 		
-		ClusterController clusterController = GameObject.Find("ClusterController").GetComponent<ClusterController>();
+		SequenceController clusterController = GameObject.Find("MainController").GetComponent<SequenceController>();
 		
 		int totalNumberOfToons = clusterController.GetTotalNumberOfToons();
 		
 		GUI.Label(statusRect, totalNumberOfToons + " TOONS");
+	}
+	
+	void MakeAddButton() {
+		float x = (float)(Screen.width * 0.75 - width / 2.0);
+		float y = (float)(Screen.height * 0.1 - height / 2.0);
+		Rect addRect = new Rect(x, y, width, height);
+		
+		SequenceController clusterController = GameObject.Find("MainController").GetComponent<SequenceController>();
+		
+		if(GUI.Button(addRect, "CLICK ME")) {
+			clusterController.GetComponent<SceneController>().MakeToon();
+		}
 	}
 }
