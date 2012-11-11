@@ -37,6 +37,7 @@ public class ClusterController : MonoBehaviour {
 	}
 	
 	public void Reset() {
+		Move = false;
 		foreach(GameObject toon in _toons) {
 			toon.transform.position = new Vector3(0f,0f,0f);	
 		}

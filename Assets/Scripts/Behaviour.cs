@@ -4,13 +4,21 @@ using System.Collections;
 public class Behaviour : MonoBehaviour {
 	
 	public bool uncomfortable;
+	public bool beingDragged;
 	
 	public Material happyMaterial;
 	public Material sadMaterial;
+	public Material draggedMaterial;
 	
 	public void Shuffle() {
+		
+		if (beingDragged) {
+			UpdateStatus();
+			return;	
+		}
+		
 		uncomfortable = CheckComfortableness();
-		UpdateStatus(uncomfortable);
+		UpdateStatus();
 		
 		if(!uncomfortable) {
 			return;	
@@ -37,8 +45,13 @@ public class Behaviour : MonoBehaviour {
 		return false;
 	}
 	
-	private void UpdateStatus(bool uncomfortable) {
-		Material material = uncomfortable ? sadMaterial : happyMaterial;
+	private void UpdateStatus() {
+		Material material;
+		if(beingDragged) {
+			material = draggedMaterial;	
+		} else {
+			material = uncomfortable ? sadMaterial : happyMaterial;
+		}
 		gameObject.GetComponent<MeshRenderer>().material = material;
 	}
 	
