@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Behaviour : MonoBehaviour {
 	
-	private bool uncomfortable;
+	public bool uncomfortable;
 	
 	public Material happyMaterial;
 	public Material sadMaterial;
@@ -43,8 +43,6 @@ public class Behaviour : MonoBehaviour {
 	}
 	
 	private Vector2 DetermineDirection() {
-
-		
 		Vector2 currentPos = new Vector2(transform.position.x, transform.position.z);
 		Vector2 averagePos = FindAveragePosition();
 		
@@ -53,8 +51,6 @@ public class Behaviour : MonoBehaviour {
 		Vector2 touchOfRandom = Random.insideUnitCircle;
 		touchOfRandom.Scale(new Vector2(5f, 5f));
 		newPos = newPos + touchOfRandom;
-		
-		Debug.Log(newPos);
 		
 		newPos.Scale(new Vector2(0.1f, 0.1f));
 		return newPos;

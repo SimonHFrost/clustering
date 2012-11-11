@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class ClusterController : MonoBehaviour {
 	
@@ -39,5 +40,19 @@ public class ClusterController : MonoBehaviour {
 		foreach(GameObject toon in _toons) {
 			toon.transform.position = new Vector3(0f,0f,0f);	
 		}
+	}
+	
+	public int GetTotalNumberOfToons() {
+		return _toons.Length;
+	}
+	
+	public int GetHappyNumberOfToons() {
+		int sum = 0;
+		foreach(GameObject toon in _toons) {
+			if(!toon.GetComponent<Behaviour>().uncomfortable) {
+				sum += 1;
+			}
+		}
+		return sum;
 	}
 }

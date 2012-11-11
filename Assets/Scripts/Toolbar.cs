@@ -9,6 +9,7 @@ public class Toolbar : MonoBehaviour {
 	void OnGUI() {
 		MakeStartButton();
 		MakeResetButton();
+		MakeStatusLabel();
 	}
 	
 	void MakeStartButton() {
@@ -31,5 +32,18 @@ public class Toolbar : MonoBehaviour {
 		if(GUI.Button(resetRect, "RESET")) {
 			GameObject.Find("ClusterController").GetComponent<ClusterController>().Reset();	
 		}
+	}
+	
+	void MakeStatusLabel() {
+		float x = (float)(Screen.width * 0.75 - width / 2.0);
+		float y = (float)(Screen.height * 0.2 - height / 2.0);
+		Rect statusRect = new Rect(x, y, width, height);
+		
+		ClusterController clusterController = GameObject.Find("ClusterController").GetComponent<ClusterController>();
+		
+		int happyNumberOfToons = clusterController.GetHappyNumberOfToons();
+		int totalNumberOfToons = clusterController.GetTotalNumberOfToons();
+		
+		GUI.Label(statusRect, happyNumberOfToons + "/" + totalNumberOfToons);
 	}
 }
