@@ -5,7 +5,6 @@ public class ClusterController : MonoBehaviour {
 	
 	public bool Move = false;
 	private GameObject[] _toons;
-	public enum mood { Unsettled, Fine }
 	private float timer;
 	
 	void Start() {

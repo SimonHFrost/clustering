@@ -5,6 +5,9 @@ public class Behaviour : MonoBehaviour {
 	
 	private bool uncomfortable;
 	
+	public Material happyMaterial;
+	public Material sadMaterial;
+	
 	public void Shuffle() {
 		uncomfortable = CheckComfortableness();
 		UpdateStatus(uncomfortable);
@@ -35,11 +38,29 @@ public class Behaviour : MonoBehaviour {
 	}
 	
 	private void UpdateStatus(bool uncomfortable) {
-		MeshRenderer status = transform.Find("Status").GetComponent<MeshRenderer>();
-		status.enabled = uncomfortable;
+		Material material = uncomfortable ? sadMaterial : happyMaterial;
+		gameObject.GetComponent<MeshRenderer>().material = material;
 	}
 	
 	private Vector2 DetermineDirection() {
+
+		
+		Vector2 currentPos = new Vector2(transform.position.x, transform.position.z);
+		Vector2 averagePos = FindAveragePosition();
+		
+		Vector2 newPos = currentPos - averagePos;
+		newPos.Normalize();
+		Vector2 touchOfRandom = Random.insideUnitCircle;
+		touchOfRandom.Scale(new Vector2(5f, 5f));
+		newPos = newPos + touchOfRandom;
+		
+		Debug.Log(newPos);
+		
+		newPos.Scale(new Vector2(0.1f, 0.1f));
+		return newPos;
+	}
+	
+	private Vector2 FindAveragePosition() {
 		float xsum = 0;
 		float zsum = 0;
 		
@@ -52,18 +73,6 @@ public class Behaviour : MonoBehaviour {
 		float averageX = (float)xsum / (float)toons.Length;
 		float averageZ = (float)zsum / (float)toons.Length;
 		
-		Vector2 currentPos = new Vector2(transform.position.x, transform.position.z);
-		Vector2 averagePos = new Vector2(averageX, averageZ);
-		
-		Vector2 newPos = currentPos - averagePos;
-		newPos.Normalize();
-		Vector2 touchOfRandom = Random.insideUnitCircle;
-		touchOfRandom.Scale(new Vector2(5f, 5f));
-		newPos = newPos + touchOfRandom;
-		
-		Debug.Log(newPos);
-		
-		newPos.Scale(new Vector2(0.1f, 0.1f));
-		return newPos;
+		return new Vector2(averageX, averageZ);
 	}
 }
