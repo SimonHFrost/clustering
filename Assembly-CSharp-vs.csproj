@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\SceneController.cs" />
      <Compile Include="Assets\Scripts\SequenceController.cs" />
      <Compile Include="Assets\Scripts\Toolbar.cs" />
+     <Compile Include="Assets\iTween\Plugins\iTween.cs" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />

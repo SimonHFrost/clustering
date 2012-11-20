@@ -25,9 +25,7 @@ public class Behaviour : MonoBehaviour {
 		}
 		
 		Vector2 direction = DetermineDirection();
-		Vector3 newPosition = new Vector3(direction.x, 0, direction.y);
-		
-		this.transform.Translate(newPosition);
+		iTween.MoveBy(gameObject, new Vector3(direction.x, 0, direction.y), 0.1f);
 		
 		uncomfortable = false;
 	}
@@ -66,6 +64,7 @@ public class Behaviour : MonoBehaviour {
 		newPos = newPos + touchOfRandom;
 		
 		newPos.Scale(new Vector2(0.1f, 0.1f));
+		
 		return newPos;
 	}
 	
