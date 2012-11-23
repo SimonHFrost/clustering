@@ -10,6 +10,9 @@ public class Behaviour : MonoBehaviour {
 	public Material sadMaterial;
 	public Material draggedMaterial;
 	
+	public float randomSkewAmmount = 5.0f;
+	public float goalRadius = 50f;
+	
 	public void Shuffle() {
 		
 		if (beingDragged) {
@@ -58,13 +61,13 @@ public class Behaviour : MonoBehaviour {
 		Vector2 averagePos = FindAveragePosition();
 		
 		float distanceFromAverage = Vector3.Distance(currentPos, averagePos);
-		float distanceToTravel = 50 - distanceFromAverage / 50;
+		float distanceToTravel = goalRadius - distanceFromAverage / goalRadius;
 		
 		Vector2 direction = currentPos - averagePos;
 		direction.Normalize();
 		
 		Vector2 touchOfRandom = Random.insideUnitCircle;
-		touchOfRandom.Scale(new Vector2(5f, 5f));	
+		touchOfRandom.Scale(new Vector2(randomSkewAmmount, randomSkewAmmount));	
 		
 		direction = direction + touchOfRandom;
 		direction.Scale(new Vector2(distanceToTravel, distanceToTravel));
