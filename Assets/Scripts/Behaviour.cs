@@ -57,15 +57,19 @@ public class Behaviour : MonoBehaviour {
 		Vector2 currentPos = new Vector2(transform.position.x, transform.position.z);
 		Vector2 averagePos = FindAveragePosition();
 		
-		Vector2 newPos = currentPos - averagePos;
-		newPos.Normalize();
+		float distanceFromAverage = Vector3.Distance(currentPos, averagePos);
+		float distanceToTravel = 50 - distanceFromAverage / 50;
+		
+		Vector2 direction = currentPos - averagePos;
+		direction.Normalize();
+		
 		Vector2 touchOfRandom = Random.insideUnitCircle;
-		touchOfRandom.Scale(new Vector2(5f, 5f));
-		newPos = newPos + touchOfRandom;
+		touchOfRandom.Scale(new Vector2(5f, 5f));	
 		
-		newPos.Scale(new Vector2(0.1f, 0.1f));
+		direction = direction + touchOfRandom;
+		direction.Scale(new Vector2(distanceToTravel, distanceToTravel));
 		
-		return newPos;
+		return direction;
 	}
 	
 	private Vector2 FindAveragePosition() {
