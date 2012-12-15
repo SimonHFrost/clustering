@@ -27,6 +27,7 @@ public class Behaviour : MonoBehaviour {
 			return;	
 		}
 		
+		gameObject.GetComponent<ParticleSystem>().Emit(50);
 		Vector2 direction = DetermineDirection();
 		iTween.MoveBy(gameObject, new Vector3(direction.x, 0, direction.y), 0.1f);
 		
