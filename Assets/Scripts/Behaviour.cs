@@ -61,7 +61,7 @@ public class Behaviour : MonoBehaviour {
 		Vector2 averagePos = FindAveragePosition();
 		
 		float distanceFromAverage = Vector3.Distance(currentPos, averagePos);
-		float distanceToTravel = goalRadius - distanceFromAverage / goalRadius;
+		float distanceToTravel = (goalRadius - distanceFromAverage) / goalRadius;
 		
 		Vector2 direction = currentPos - averagePos;
 		direction.Normalize();
