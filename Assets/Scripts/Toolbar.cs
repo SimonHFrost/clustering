@@ -11,6 +11,7 @@ public class Toolbar : MonoBehaviour {
 		MakeResetButton();
 		MakeStatusLabel();
 		MakeAddButton();
+		DetectScrollWheel();
 	}
 	
 	void MakeStartButton() {
@@ -40,9 +41,9 @@ public class Toolbar : MonoBehaviour {
 		float y = (float)(Screen.height * 0.2 - height / 2.0);
 		Rect statusRect = new Rect(x, y, width, height);
 		
-		SequenceController clusterController = GameObject.Find("MainController").GetComponent<SequenceController>();
+		SequenceController sequenceController = GameObject.Find("MainController").GetComponent<SequenceController>();
 		
-		int totalNumberOfToons = clusterController.GetTotalNumberOfToons();
+		int totalNumberOfToons = sequenceController.GetTotalNumberOfToons();
 		
 		GUI.Label(statusRect, totalNumberOfToons + " TOONS");
 	}
@@ -54,8 +55,15 @@ public class Toolbar : MonoBehaviour {
 		
 		SequenceController clusterController = GameObject.Find("MainController").GetComponent<SequenceController>();
 		
-		if(GUI.Button(addRect, "CLICK ME")) {
+		if(GUI.RepeatButton(addRect, "CLICK ME")) {
 			clusterController.GetComponent<SceneController>().MakeToon();
+		}
+	}
+	
+	void DetectScrollWheel() {
+		float change = Input.GetAxis("Mouse ScrollWheel") * 5.0f;	
+		if(change != 0) {
+			GameObject.Find("Main Camera").transform.Translate(new Vector3(0.0f, 0.0f, change));
 		}
 	}
 }

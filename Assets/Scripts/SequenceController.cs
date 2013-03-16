@@ -13,6 +13,7 @@ public class SequenceController : MonoBehaviour {
 	}
 	
 	void Update() {
+		FindToons();
 		if(Move) {
 			timer += Time.deltaTime;
 			if(timer > 1.0f) {
@@ -27,7 +28,6 @@ public class SequenceController : MonoBehaviour {
 	}
 	
 	public void AdjustCluster() {
-		FindToons();
 		foreach(GameObject toon in _toons) {
 			toon.GetComponent<Behaviour>().Shuffle();	
 		}
