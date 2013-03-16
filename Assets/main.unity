@@ -1,7 +1,7 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!29 &1
-Scene:
+SceneSettings:
   m_ObjectHideFlags: 0
   m_PVSData: 
   m_QueryMode: 1
@@ -119,7 +119,7 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 3
+  serializedVersion: 4
   m_Component:
   - 4: {fileID: 96199778}
   - 108: {fileID: 96199779}
@@ -139,7 +139,6 @@ Transform:
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
   m_LocalPosition: {x: 0, y: 0, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!108 &96199779
@@ -182,7 +181,7 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: 2febc204cbeaafd49a7ada5bea48ae1f, type: 2}
   m_PrefabInternal: {fileID: 1993649478}
-  serializedVersion: 3
+  serializedVersion: 4
   m_Component:
   - 4: {fileID: 137392966}
   - 33: {fileID: 137392968}
@@ -208,7 +207,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1449767495}
 --- !u!23 &137392967
@@ -498,10 +496,12 @@ ParticleSystem:
     inheritVelocity: 0
     maxNumParticles: 1000
   ShapeModule:
+    serializedVersion: 2
     enabled: 1
     type: 0
     radius: 1
     angle: 25
+    length: 5
     boxX: 0
     boxY: 0
     boxZ: 0
@@ -965,6 +965,9 @@ ParticleSystem:
       minMaxState: 0
     inWorldSpace: 0
     randomizePerFrame: 0
+  ExternalForcesModule:
+    enabled: 0
+    multiplier: 1
   ClampVelocityModule:
     enabled: 0
     x:
@@ -1100,6 +1103,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     separateAxis: 0
+    inWorldSpace: 0
     dampen: 1
   SizeBySpeedModule:
     enabled: 0
@@ -1283,11 +1287,20 @@ ParticleSystem:
     bounce: 1
     energyLossOnCollision: 0
     minKillSpeed: 0
+    particleRadius: .00999999978
+    collidesWith:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    quality: 0
+    voxelSize: .5
   SubModule:
     enabled: 0
     subEmitterBirth: {fileID: 0}
-    subEmitterDeath: {fileID: 0}
+    subEmitterBirth1: {fileID: 0}
     subEmitterCollision: {fileID: 0}
+    subEmitterCollision1: {fileID: 0}
+    subEmitterDeath: {fileID: 0}
+    subEmitterDeath1: {fileID: 0}
 --- !u!199 &137392971
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -1313,8 +1326,12 @@ ParticleSystemRenderer:
   m_VelocityScale: 0
   m_LengthScale: 2
   m_SortingFudge: 0
+  m_NormalDirection: 0
   m_SortMode: 0
   m_Mesh: {fileID: 0}
+  m_Mesh1: {fileID: 0}
+  m_Mesh2: {fileID: 0}
+  m_Mesh3: {fileID: 0}
 --- !u!114 &137392972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1324,7 +1341,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 137392965}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec22e7543f230cc45bad22286a08531e, type: 1}
+  m_Script: {fileID: 11500000, guid: ec22e7543f230cc45bad22286a08531e, type: 3}
   m_Name: 
 --- !u!114 &137392973
 MonoBehaviour:
@@ -1335,7 +1352,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 137392965}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 859add86859b5424d838a65b11bf13e3, type: 1}
+  m_Script: {fileID: 11500000, guid: 859add86859b5424d838a65b11bf13e3, type: 3}
   m_Name: 
   uncomfortable: 0
   beingDragged: 0
@@ -1349,7 +1366,7 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: 2febc204cbeaafd49a7ada5bea48ae1f, type: 2}
   m_PrefabInternal: {fileID: 83150136}
-  serializedVersion: 3
+  serializedVersion: 4
   m_Component:
   - 4: {fileID: 369701457}
   - 33: {fileID: 369701459}
@@ -1375,7 +1392,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1449767495}
 --- !u!23 &369701458
@@ -1665,10 +1681,12 @@ ParticleSystem:
     inheritVelocity: 0
     maxNumParticles: 1000
   ShapeModule:
+    serializedVersion: 2
     enabled: 1
     type: 0
     radius: 1
     angle: 25
+    length: 5
     boxX: 0
     boxY: 0
     boxZ: 0
@@ -2132,6 +2150,9 @@ ParticleSystem:
       minMaxState: 0
     inWorldSpace: 0
     randomizePerFrame: 0
+  ExternalForcesModule:
+    enabled: 0
+    multiplier: 1
   ClampVelocityModule:
     enabled: 0
     x:
@@ -2267,6 +2288,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     separateAxis: 0
+    inWorldSpace: 0
     dampen: 1
   SizeBySpeedModule:
     enabled: 0
@@ -2450,11 +2472,20 @@ ParticleSystem:
     bounce: 1
     energyLossOnCollision: 0
     minKillSpeed: 0
+    particleRadius: .00999999978
+    collidesWith:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    quality: 0
+    voxelSize: .5
   SubModule:
     enabled: 0
     subEmitterBirth: {fileID: 0}
-    subEmitterDeath: {fileID: 0}
+    subEmitterBirth1: {fileID: 0}
     subEmitterCollision: {fileID: 0}
+    subEmitterCollision1: {fileID: 0}
+    subEmitterDeath: {fileID: 0}
+    subEmitterDeath1: {fileID: 0}
 --- !u!199 &369701462
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -2480,8 +2511,12 @@ ParticleSystemRenderer:
   m_VelocityScale: 0
   m_LengthScale: 2
   m_SortingFudge: 0
+  m_NormalDirection: 0
   m_SortMode: 0
   m_Mesh: {fileID: 0}
+  m_Mesh1: {fileID: 0}
+  m_Mesh2: {fileID: 0}
+  m_Mesh3: {fileID: 0}
 --- !u!114 &369701463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2491,7 +2526,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 369701456}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec22e7543f230cc45bad22286a08531e, type: 1}
+  m_Script: {fileID: 11500000, guid: ec22e7543f230cc45bad22286a08531e, type: 3}
   m_Name: 
 --- !u!114 &369701464
 MonoBehaviour:
@@ -2502,7 +2537,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 369701456}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 859add86859b5424d838a65b11bf13e3, type: 1}
+  m_Script: {fileID: 11500000, guid: 859add86859b5424d838a65b11bf13e3, type: 3}
   m_Name: 
   uncomfortable: 0
   beingDragged: 0
@@ -2516,7 +2551,7 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: 2febc204cbeaafd49a7ada5bea48ae1f, type: 2}
   m_PrefabInternal: {fileID: 1409827348}
-  serializedVersion: 3
+  serializedVersion: 4
   m_Component:
   - 4: {fileID: 431553854}
   - 33: {fileID: 431553856}
@@ -2542,7 +2577,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1449767495}
 --- !u!23 &431553855
@@ -2594,7 +2628,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 431553853}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec22e7543f230cc45bad22286a08531e, type: 1}
+  m_Script: {fileID: 11500000, guid: ec22e7543f230cc45bad22286a08531e, type: 3}
   m_Name: 
 --- !u!114 &431553859
 MonoBehaviour:
@@ -2605,7 +2639,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 431553853}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 859add86859b5424d838a65b11bf13e3, type: 1}
+  m_Script: {fileID: 11500000, guid: 859add86859b5424d838a65b11bf13e3, type: 3}
   m_Name: 
   uncomfortable: 0
   beingDragged: 0
@@ -2861,10 +2895,12 @@ ParticleSystem:
     inheritVelocity: 0
     maxNumParticles: 1000
   ShapeModule:
+    serializedVersion: 2
     enabled: 1
     type: 0
     radius: 1
     angle: 25
+    length: 5
     boxX: 0
     boxY: 0
     boxZ: 0
@@ -3328,6 +3364,9 @@ ParticleSystem:
       minMaxState: 0
     inWorldSpace: 0
     randomizePerFrame: 0
+  ExternalForcesModule:
+    enabled: 0
+    multiplier: 1
   ClampVelocityModule:
     enabled: 0
     x:
@@ -3463,6 +3502,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     separateAxis: 0
+    inWorldSpace: 0
     dampen: 1
   SizeBySpeedModule:
     enabled: 0
@@ -3646,11 +3686,20 @@ ParticleSystem:
     bounce: 1
     energyLossOnCollision: 0
     minKillSpeed: 0
+    particleRadius: .00999999978
+    collidesWith:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    quality: 0
+    voxelSize: .5
   SubModule:
     enabled: 0
     subEmitterBirth: {fileID: 0}
-    subEmitterDeath: {fileID: 0}
+    subEmitterBirth1: {fileID: 0}
     subEmitterCollision: {fileID: 0}
+    subEmitterCollision1: {fileID: 0}
+    subEmitterDeath: {fileID: 0}
+    subEmitterDeath1: {fileID: 0}
 --- !u!199 &431553861
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -3676,14 +3725,18 @@ ParticleSystemRenderer:
   m_VelocityScale: 0
   m_LengthScale: 2
   m_SortingFudge: 0
+  m_NormalDirection: 0
   m_SortMode: 0
   m_Mesh: {fileID: 0}
+  m_Mesh1: {fileID: 0}
+  m_Mesh2: {fileID: 0}
+  m_Mesh3: {fileID: 0}
 --- !u!1 &515807844
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: 2febc204cbeaafd49a7ada5bea48ae1f, type: 2}
   m_PrefabInternal: {fileID: 936433303}
-  serializedVersion: 3
+  serializedVersion: 4
   m_Component:
   - 4: {fileID: 515807845}
   - 33: {fileID: 515807847}
@@ -3709,7 +3762,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1449767495}
 --- !u!23 &515807846
@@ -3999,10 +4051,12 @@ ParticleSystem:
     inheritVelocity: 0
     maxNumParticles: 1000
   ShapeModule:
+    serializedVersion: 2
     enabled: 1
     type: 0
     radius: 1
     angle: 25
+    length: 5
     boxX: 0
     boxY: 0
     boxZ: 0
@@ -4466,6 +4520,9 @@ ParticleSystem:
       minMaxState: 0
     inWorldSpace: 0
     randomizePerFrame: 0
+  ExternalForcesModule:
+    enabled: 0
+    multiplier: 1
   ClampVelocityModule:
     enabled: 0
     x:
@@ -4601,6 +4658,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     separateAxis: 0
+    inWorldSpace: 0
     dampen: 1
   SizeBySpeedModule:
     enabled: 0
@@ -4784,11 +4842,20 @@ ParticleSystem:
     bounce: 1
     energyLossOnCollision: 0
     minKillSpeed: 0
+    particleRadius: .00999999978
+    collidesWith:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    quality: 0
+    voxelSize: .5
   SubModule:
     enabled: 0
     subEmitterBirth: {fileID: 0}
-    subEmitterDeath: {fileID: 0}
+    subEmitterBirth1: {fileID: 0}
     subEmitterCollision: {fileID: 0}
+    subEmitterCollision1: {fileID: 0}
+    subEmitterDeath: {fileID: 0}
+    subEmitterDeath1: {fileID: 0}
 --- !u!199 &515807850
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -4814,8 +4881,12 @@ ParticleSystemRenderer:
   m_VelocityScale: 0
   m_LengthScale: 2
   m_SortingFudge: 0
+  m_NormalDirection: 0
   m_SortMode: 0
   m_Mesh: {fileID: 0}
+  m_Mesh1: {fileID: 0}
+  m_Mesh2: {fileID: 0}
+  m_Mesh3: {fileID: 0}
 --- !u!114 &515807851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4825,7 +4896,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 515807844}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 859add86859b5424d838a65b11bf13e3, type: 1}
+  m_Script: {fileID: 11500000, guid: 859add86859b5424d838a65b11bf13e3, type: 3}
   m_Name: 
   uncomfortable: 0
   beingDragged: 0
@@ -4843,14 +4914,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 515807844}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec22e7543f230cc45bad22286a08531e, type: 1}
+  m_Script: {fileID: 11500000, guid: ec22e7543f230cc45bad22286a08531e, type: 3}
   m_Name: 
 --- !u!1 &606832333
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 3
+  serializedVersion: 4
   m_Component:
   - 4: {fileID: 606832334}
   - 114: {fileID: 606832335}
@@ -4871,7 +4942,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: .738323808, y: 1.28767347, z: .521848977}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!114 &606832335
@@ -4882,7 +4952,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 606832333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c26dd5426a83d7b4ea185a7af4826a84, type: 1}
+  m_Script: {fileID: 11500000, guid: c26dd5426a83d7b4ea185a7af4826a84, type: 3}
   m_Name: 
   Move: 0
 --- !u!114 &606832336
@@ -4893,7 +4963,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 606832333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d97ea57562f0e114896048d28ded87c4, type: 1}
+  m_Script: {fileID: 11500000, guid: d97ea57562f0e114896048d28ded87c4, type: 3}
   m_Name: 
   toon: {fileID: 400000, guid: 2febc204cbeaafd49a7ada5bea48ae1f, type: 2}
 --- !u!1 &630241829
@@ -4901,7 +4971,7 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 3
+  serializedVersion: 4
   m_Component:
   - 4: {fileID: 630241830}
   - 114: {fileID: 630241832}
@@ -4922,7 +4992,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1000, y: 0, z: -1000}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!154 &630241831
@@ -4960,12 +5029,13 @@ MonoBehaviour:
   m_LightmapIndex: -1
   m_LightmapSize: 1024
   m_DrawTreesAndFoliage: 1
+  m_MaterialTemplate: {fileID: 0}
 --- !u!1 &759613152
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: 2febc204cbeaafd49a7ada5bea48ae1f, type: 2}
   m_PrefabInternal: {fileID: 1229573545}
-  serializedVersion: 3
+  serializedVersion: 4
   m_Component:
   - 4: {fileID: 759613153}
   - 33: {fileID: 759613155}
@@ -4991,7 +5061,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1449767495}
 --- !u!23 &759613154
@@ -5281,10 +5350,12 @@ ParticleSystem:
     inheritVelocity: 0
     maxNumParticles: 1000
   ShapeModule:
+    serializedVersion: 2
     enabled: 1
     type: 0
     radius: 1
     angle: 25
+    length: 5
     boxX: 0
     boxY: 0
     boxZ: 0
@@ -5748,6 +5819,9 @@ ParticleSystem:
       minMaxState: 0
     inWorldSpace: 0
     randomizePerFrame: 0
+  ExternalForcesModule:
+    enabled: 0
+    multiplier: 1
   ClampVelocityModule:
     enabled: 0
     x:
@@ -5883,6 +5957,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     separateAxis: 0
+    inWorldSpace: 0
     dampen: 1
   SizeBySpeedModule:
     enabled: 0
@@ -6066,11 +6141,20 @@ ParticleSystem:
     bounce: 1
     energyLossOnCollision: 0
     minKillSpeed: 0
+    particleRadius: .00999999978
+    collidesWith:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    quality: 0
+    voxelSize: .5
   SubModule:
     enabled: 0
     subEmitterBirth: {fileID: 0}
-    subEmitterDeath: {fileID: 0}
+    subEmitterBirth1: {fileID: 0}
     subEmitterCollision: {fileID: 0}
+    subEmitterCollision1: {fileID: 0}
+    subEmitterDeath: {fileID: 0}
+    subEmitterDeath1: {fileID: 0}
 --- !u!199 &759613158
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -6096,8 +6180,12 @@ ParticleSystemRenderer:
   m_VelocityScale: 0
   m_LengthScale: 2
   m_SortingFudge: 0
+  m_NormalDirection: 0
   m_SortMode: 0
   m_Mesh: {fileID: 0}
+  m_Mesh1: {fileID: 0}
+  m_Mesh2: {fileID: 0}
+  m_Mesh3: {fileID: 0}
 --- !u!114 &759613159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6107,7 +6195,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 759613152}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 859add86859b5424d838a65b11bf13e3, type: 1}
+  m_Script: {fileID: 11500000, guid: 859add86859b5424d838a65b11bf13e3, type: 3}
   m_Name: 
   uncomfortable: 0
   beingDragged: 0
@@ -6125,7 +6213,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 759613152}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec22e7543f230cc45bad22286a08531e, type: 1}
+  m_Script: {fileID: 11500000, guid: ec22e7543f230cc45bad22286a08531e, type: 3}
   m_Name: 
 --- !u!1001 &855737465
 Prefab:
@@ -6372,7 +6460,7 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 3
+  serializedVersion: 4
   m_Component:
   - 4: {fileID: 1447669422}
   - 20: {fileID: 1447669423}
@@ -6395,7 +6483,6 @@ Transform:
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
   m_LocalPosition: {x: 0, y: 30, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!20 &1447669423
@@ -6452,7 +6539,7 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 3
+  serializedVersion: 4
   m_Component:
   - 4: {fileID: 1449767495}
   m_Layer: 0
@@ -6471,25 +6558,24 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 431553854}
-  - {fileID: 137392966}
-  - {fileID: 2081355600}
-  - {fileID: 1802094405}
-  - {fileID: 759613153}
   - {fileID: 369701457}
+  - {fileID: 1802094405}
+  - {fileID: 2081355600}
   - {fileID: 515807845}
   - {fileID: 1553788190}
-  - {fileID: 1999575505}
+  - {fileID: 759613153}
+  - {fileID: 431553854}
   - {fileID: 1816502292}
+  - {fileID: 1999575505}
+  - {fileID: 137392966}
   m_Father: {fileID: 0}
 --- !u!1 &1553788189
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: 2febc204cbeaafd49a7ada5bea48ae1f, type: 2}
   m_PrefabInternal: {fileID: 943630809}
-  serializedVersion: 3
+  serializedVersion: 4
   m_Component:
   - 4: {fileID: 1553788190}
   - 33: {fileID: 1553788192}
@@ -6515,7 +6601,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1449767495}
 --- !u!23 &1553788191
@@ -6805,10 +6890,12 @@ ParticleSystem:
     inheritVelocity: 0
     maxNumParticles: 1000
   ShapeModule:
+    serializedVersion: 2
     enabled: 1
     type: 0
     radius: 1
     angle: 25
+    length: 5
     boxX: 0
     boxY: 0
     boxZ: 0
@@ -7272,6 +7359,9 @@ ParticleSystem:
       minMaxState: 0
     inWorldSpace: 0
     randomizePerFrame: 0
+  ExternalForcesModule:
+    enabled: 0
+    multiplier: 1
   ClampVelocityModule:
     enabled: 0
     x:
@@ -7407,6 +7497,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     separateAxis: 0
+    inWorldSpace: 0
     dampen: 1
   SizeBySpeedModule:
     enabled: 0
@@ -7590,11 +7681,20 @@ ParticleSystem:
     bounce: 1
     energyLossOnCollision: 0
     minKillSpeed: 0
+    particleRadius: .00999999978
+    collidesWith:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    quality: 0
+    voxelSize: .5
   SubModule:
     enabled: 0
     subEmitterBirth: {fileID: 0}
-    subEmitterDeath: {fileID: 0}
+    subEmitterBirth1: {fileID: 0}
     subEmitterCollision: {fileID: 0}
+    subEmitterCollision1: {fileID: 0}
+    subEmitterDeath: {fileID: 0}
+    subEmitterDeath1: {fileID: 0}
 --- !u!199 &1553788195
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -7620,8 +7720,12 @@ ParticleSystemRenderer:
   m_VelocityScale: 0
   m_LengthScale: 2
   m_SortingFudge: 0
+  m_NormalDirection: 0
   m_SortMode: 0
   m_Mesh: {fileID: 0}
+  m_Mesh1: {fileID: 0}
+  m_Mesh2: {fileID: 0}
+  m_Mesh3: {fileID: 0}
 --- !u!114 &1553788196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7631,7 +7735,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1553788189}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec22e7543f230cc45bad22286a08531e, type: 1}
+  m_Script: {fileID: 11500000, guid: ec22e7543f230cc45bad22286a08531e, type: 3}
   m_Name: 
 --- !u!114 &1553788197
 MonoBehaviour:
@@ -7642,7 +7746,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1553788189}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 859add86859b5424d838a65b11bf13e3, type: 1}
+  m_Script: {fileID: 11500000, guid: 859add86859b5424d838a65b11bf13e3, type: 3}
   m_Name: 
   uncomfortable: 0
   beingDragged: 0
@@ -7736,7 +7840,7 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: 2febc204cbeaafd49a7ada5bea48ae1f, type: 2}
   m_PrefabInternal: {fileID: 855737465}
-  serializedVersion: 3
+  serializedVersion: 4
   m_Component:
   - 4: {fileID: 1802094405}
   - 33: {fileID: 1802094407}
@@ -7762,7 +7866,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1449767495}
 --- !u!23 &1802094406
@@ -8052,10 +8155,12 @@ ParticleSystem:
     inheritVelocity: 0
     maxNumParticles: 1000
   ShapeModule:
+    serializedVersion: 2
     enabled: 1
     type: 0
     radius: 1
     angle: 25
+    length: 5
     boxX: 0
     boxY: 0
     boxZ: 0
@@ -8519,6 +8624,9 @@ ParticleSystem:
       minMaxState: 0
     inWorldSpace: 0
     randomizePerFrame: 0
+  ExternalForcesModule:
+    enabled: 0
+    multiplier: 1
   ClampVelocityModule:
     enabled: 0
     x:
@@ -8654,6 +8762,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     separateAxis: 0
+    inWorldSpace: 0
     dampen: 1
   SizeBySpeedModule:
     enabled: 0
@@ -8837,11 +8946,20 @@ ParticleSystem:
     bounce: 1
     energyLossOnCollision: 0
     minKillSpeed: 0
+    particleRadius: .00999999978
+    collidesWith:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    quality: 0
+    voxelSize: .5
   SubModule:
     enabled: 0
     subEmitterBirth: {fileID: 0}
-    subEmitterDeath: {fileID: 0}
+    subEmitterBirth1: {fileID: 0}
     subEmitterCollision: {fileID: 0}
+    subEmitterCollision1: {fileID: 0}
+    subEmitterDeath: {fileID: 0}
+    subEmitterDeath1: {fileID: 0}
 --- !u!199 &1802094410
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -8867,8 +8985,12 @@ ParticleSystemRenderer:
   m_VelocityScale: 0
   m_LengthScale: 2
   m_SortingFudge: 0
+  m_NormalDirection: 0
   m_SortMode: 0
   m_Mesh: {fileID: 0}
+  m_Mesh1: {fileID: 0}
+  m_Mesh2: {fileID: 0}
+  m_Mesh3: {fileID: 0}
 --- !u!114 &1802094411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8878,7 +9000,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1802094404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 859add86859b5424d838a65b11bf13e3, type: 1}
+  m_Script: {fileID: 11500000, guid: 859add86859b5424d838a65b11bf13e3, type: 3}
   m_Name: 
   uncomfortable: 0
   beingDragged: 0
@@ -8896,14 +9018,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1802094404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec22e7543f230cc45bad22286a08531e, type: 1}
+  m_Script: {fileID: 11500000, guid: ec22e7543f230cc45bad22286a08531e, type: 3}
   m_Name: 
 --- !u!1 &1816502291
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: 2febc204cbeaafd49a7ada5bea48ae1f, type: 2}
   m_PrefabInternal: {fileID: 1643075525}
-  serializedVersion: 3
+  serializedVersion: 4
   m_Component:
   - 4: {fileID: 1816502292}
   - 33: {fileID: 1816502294}
@@ -8929,7 +9051,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1449767495}
 --- !u!23 &1816502293
@@ -9219,10 +9340,12 @@ ParticleSystem:
     inheritVelocity: 0
     maxNumParticles: 1000
   ShapeModule:
+    serializedVersion: 2
     enabled: 1
     type: 0
     radius: 1
     angle: 25
+    length: 5
     boxX: 0
     boxY: 0
     boxZ: 0
@@ -9686,6 +9809,9 @@ ParticleSystem:
       minMaxState: 0
     inWorldSpace: 0
     randomizePerFrame: 0
+  ExternalForcesModule:
+    enabled: 0
+    multiplier: 1
   ClampVelocityModule:
     enabled: 0
     x:
@@ -9821,6 +9947,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     separateAxis: 0
+    inWorldSpace: 0
     dampen: 1
   SizeBySpeedModule:
     enabled: 0
@@ -10004,11 +10131,20 @@ ParticleSystem:
     bounce: 1
     energyLossOnCollision: 0
     minKillSpeed: 0
+    particleRadius: .00999999978
+    collidesWith:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    quality: 0
+    voxelSize: .5
   SubModule:
     enabled: 0
     subEmitterBirth: {fileID: 0}
-    subEmitterDeath: {fileID: 0}
+    subEmitterBirth1: {fileID: 0}
     subEmitterCollision: {fileID: 0}
+    subEmitterCollision1: {fileID: 0}
+    subEmitterDeath: {fileID: 0}
+    subEmitterDeath1: {fileID: 0}
 --- !u!199 &1816502297
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -10034,8 +10170,12 @@ ParticleSystemRenderer:
   m_VelocityScale: 0
   m_LengthScale: 2
   m_SortingFudge: 0
+  m_NormalDirection: 0
   m_SortMode: 0
   m_Mesh: {fileID: 0}
+  m_Mesh1: {fileID: 0}
+  m_Mesh2: {fileID: 0}
+  m_Mesh3: {fileID: 0}
 --- !u!114 &1816502298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10045,7 +10185,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1816502291}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 859add86859b5424d838a65b11bf13e3, type: 1}
+  m_Script: {fileID: 11500000, guid: 859add86859b5424d838a65b11bf13e3, type: 3}
   m_Name: 
   uncomfortable: 0
   beingDragged: 0
@@ -10063,14 +10203,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1816502291}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec22e7543f230cc45bad22286a08531e, type: 1}
+  m_Script: {fileID: 11500000, guid: ec22e7543f230cc45bad22286a08531e, type: 3}
   m_Name: 
 --- !u!1 &1926841987
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 3
+  serializedVersion: 4
   m_Component:
   - 4: {fileID: 1926841988}
   - 114: {fileID: 1926841989}
@@ -10090,7 +10230,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.88919926, y: 2.53001213, z: 1.48947096}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!114 &1926841989
@@ -10101,7 +10240,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1926841987}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f4c6654b5dc7ba46944159bd7e55c9f, type: 1}
+  m_Script: {fileID: 11500000, guid: 8f4c6654b5dc7ba46944159bd7e55c9f, type: 3}
   m_Name: 
 --- !u!1001 &1993649478
 Prefab:
@@ -10148,7 +10287,7 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: 2febc204cbeaafd49a7ada5bea48ae1f, type: 2}
   m_PrefabInternal: {fileID: 1716320800}
-  serializedVersion: 3
+  serializedVersion: 4
   m_Component:
   - 4: {fileID: 1999575505}
   - 33: {fileID: 1999575507}
@@ -10174,7 +10313,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1449767495}
 --- !u!23 &1999575506
@@ -10464,10 +10602,12 @@ ParticleSystem:
     inheritVelocity: 0
     maxNumParticles: 1000
   ShapeModule:
+    serializedVersion: 2
     enabled: 1
     type: 0
     radius: 1
     angle: 25
+    length: 5
     boxX: 0
     boxY: 0
     boxZ: 0
@@ -10931,6 +11071,9 @@ ParticleSystem:
       minMaxState: 0
     inWorldSpace: 0
     randomizePerFrame: 0
+  ExternalForcesModule:
+    enabled: 0
+    multiplier: 1
   ClampVelocityModule:
     enabled: 0
     x:
@@ -11066,6 +11209,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     separateAxis: 0
+    inWorldSpace: 0
     dampen: 1
   SizeBySpeedModule:
     enabled: 0
@@ -11249,11 +11393,20 @@ ParticleSystem:
     bounce: 1
     energyLossOnCollision: 0
     minKillSpeed: 0
+    particleRadius: .00999999978
+    collidesWith:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    quality: 0
+    voxelSize: .5
   SubModule:
     enabled: 0
     subEmitterBirth: {fileID: 0}
-    subEmitterDeath: {fileID: 0}
+    subEmitterBirth1: {fileID: 0}
     subEmitterCollision: {fileID: 0}
+    subEmitterCollision1: {fileID: 0}
+    subEmitterDeath: {fileID: 0}
+    subEmitterDeath1: {fileID: 0}
 --- !u!199 &1999575510
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -11279,8 +11432,12 @@ ParticleSystemRenderer:
   m_VelocityScale: 0
   m_LengthScale: 2
   m_SortingFudge: 0
+  m_NormalDirection: 0
   m_SortMode: 0
   m_Mesh: {fileID: 0}
+  m_Mesh1: {fileID: 0}
+  m_Mesh2: {fileID: 0}
+  m_Mesh3: {fileID: 0}
 --- !u!114 &1999575511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11290,7 +11447,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1999575504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec22e7543f230cc45bad22286a08531e, type: 1}
+  m_Script: {fileID: 11500000, guid: ec22e7543f230cc45bad22286a08531e, type: 3}
   m_Name: 
 --- !u!114 &1999575512
 MonoBehaviour:
@@ -11301,7 +11458,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1999575504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 859add86859b5424d838a65b11bf13e3, type: 1}
+  m_Script: {fileID: 11500000, guid: 859add86859b5424d838a65b11bf13e3, type: 3}
   m_Name: 
   uncomfortable: 0
   beingDragged: 0
@@ -11315,7 +11472,7 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: 2febc204cbeaafd49a7ada5bea48ae1f, type: 2}
   m_PrefabInternal: {fileID: 891408223}
-  serializedVersion: 3
+  serializedVersion: 4
   m_Component:
   - 4: {fileID: 2081355600}
   - 33: {fileID: 2081355602}
@@ -11341,7 +11498,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1449767495}
 --- !u!23 &2081355601
@@ -11631,10 +11787,12 @@ ParticleSystem:
     inheritVelocity: 0
     maxNumParticles: 1000
   ShapeModule:
+    serializedVersion: 2
     enabled: 1
     type: 0
     radius: 1
     angle: 25
+    length: 5
     boxX: 0
     boxY: 0
     boxZ: 0
@@ -12098,6 +12256,9 @@ ParticleSystem:
       minMaxState: 0
     inWorldSpace: 0
     randomizePerFrame: 0
+  ExternalForcesModule:
+    enabled: 0
+    multiplier: 1
   ClampVelocityModule:
     enabled: 0
     x:
@@ -12233,6 +12394,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     separateAxis: 0
+    inWorldSpace: 0
     dampen: 1
   SizeBySpeedModule:
     enabled: 0
@@ -12416,11 +12578,20 @@ ParticleSystem:
     bounce: 1
     energyLossOnCollision: 0
     minKillSpeed: 0
+    particleRadius: .00999999978
+    collidesWith:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    quality: 0
+    voxelSize: .5
   SubModule:
     enabled: 0
     subEmitterBirth: {fileID: 0}
-    subEmitterDeath: {fileID: 0}
+    subEmitterBirth1: {fileID: 0}
     subEmitterCollision: {fileID: 0}
+    subEmitterCollision1: {fileID: 0}
+    subEmitterDeath: {fileID: 0}
+    subEmitterDeath1: {fileID: 0}
 --- !u!199 &2081355605
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -12446,8 +12617,12 @@ ParticleSystemRenderer:
   m_VelocityScale: 0
   m_LengthScale: 2
   m_SortingFudge: 0
+  m_NormalDirection: 0
   m_SortMode: 0
   m_Mesh: {fileID: 0}
+  m_Mesh1: {fileID: 0}
+  m_Mesh2: {fileID: 0}
+  m_Mesh3: {fileID: 0}
 --- !u!114 &2081355606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12457,7 +12632,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2081355599}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 859add86859b5424d838a65b11bf13e3, type: 1}
+  m_Script: {fileID: 11500000, guid: 859add86859b5424d838a65b11bf13e3, type: 3}
   m_Name: 
   uncomfortable: 0
   beingDragged: 0
@@ -12475,5 +12650,5 @@ MonoBehaviour:
   m_GameObject: {fileID: 2081355599}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec22e7543f230cc45bad22286a08531e, type: 1}
+  m_Script: {fileID: 11500000, guid: ec22e7543f230cc45bad22286a08531e, type: 3}
   m_Name: 
