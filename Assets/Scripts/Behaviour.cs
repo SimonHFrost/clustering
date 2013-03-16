@@ -28,7 +28,7 @@ public class Behaviour : MonoBehaviour {
 		}
 		
 		Vector2 direction = DetermineDirection();
-		iTween.MoveBy(gameObject, new Vector3(direction.x, 0, direction.y), 0.1f);
+		iTween.MoveBy(gameObject, new Vector3(direction.x, 0, direction.y), 1f);
 		
 		uncomfortable = false;
 	}

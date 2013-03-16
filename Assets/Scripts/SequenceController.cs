@@ -15,7 +15,7 @@ public class SequenceController : MonoBehaviour {
 	void Update() {
 		if(Move) {
 			timer += Time.deltaTime;
-			if(timer > 0.1) {
+			if(timer > 1.0f) {
 				AdjustCluster();
 				timer = 0;
 			}
